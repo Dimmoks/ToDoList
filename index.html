@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+</head>
+<body background="background.jpg">
+    <div class="container">
+        <div class="head-text">
+            To-Do List
+        </div>
+        <div class="prewiew-text">
+            Твої замітки :)
+        </div>
+        <div class="add-block">
+            <input class="inputadd" id="addinput" type="text" placeholder="Введіть задачу">
+            <button class="buttonAdd" onclick="sumbitButtonClickHandler()">
+                +
+            </button>
+        </div>
+        <div class="BlockTask" id="BlockTask">
+        </div>
+    </div>
+
+    <script>
+        function sumbitButtonClickHandler() {
+            const addinput = document.getElementById('addinput');
+
+            const tasktext = addinput.value;
+
+            if (!tasktext) {
+                return;
+            }
+
+            const taskcard = document.createElement('div');
+            taskcard.className = 'taskcard';
+
+            const taskName = document.createElement('div');
+            taskName.innerText = tasktext;
+            taskName.className = 'tasktext';
+            taskcard.appendChild(taskName);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = '🞫';
+            deleteButton.className = 'deltask';
+            deleteButton.addEventListener('click', () => {
+                const BlockTask = document.getElementById('BlockTask');
+
+                BlockTask.removeChild(event.target.parentElement);
+            });
+            taskcard.appendChild(deleteButton);
+
+            const BlockTask = document.getElementById('BlockTask');
+            BlockTask.appendChild(taskcard);
+
+            addinput.value = '';
+            addinput.focus();
+        }
+    </script>
+
+</body>
+</html>
